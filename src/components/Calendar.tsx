@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import { format } from 'date-fns';
-import { es } from 'date-fns/locale';
+import React, { useState, useEffect } from 'react'; // React ya no muestra advertencias
+import { format } from 'date-fns'; // Import optimizado
 import { ReservationForm } from './ReservationForm';
 import { useReservations } from '../hooks/useReservations';
 
@@ -9,7 +8,7 @@ export const Calendar = () => {
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const { reservations, loading, fetchReservations } = useReservations();
 
-  React.useEffect(() => {
+  useEffect(() => {
     fetchReservations(format(selectedDate, 'yyyy-MM-dd'));
   }, [selectedDate]);
 
@@ -41,12 +40,12 @@ export const Calendar = () => {
       ) : (
         <div className="grid grid-cols-3 gap-3">
           {availableSlots.map((time) => {
-            const isReserved = reservations.some(r => r.time === time);
+            const isReserved = reservations.some((r) => r.time === time);
             return (
               <button
                 key={time}
                 onClick={() => setSelectedTime(time)}
-                disabled={isReserved}
+                disabled={!!isReserved} // Conversión a booleano
                 className={`p-2 text-center border rounded ${
                   isReserved 
                     ? 'bg-gray-100 text-gray-400 cursor-not-allowed'

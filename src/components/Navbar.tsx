@@ -6,7 +6,7 @@ export const Navbar = () => {
   return (
     <nav className="bg-black text-white p-4">
       <div className="container mx-auto flex justify-between items-center">
-        <Link to="/" className="text-2xl font-bold">Garage Club Portillo</Link>
+        <Link to="/" className="text-2xl font-bold">Global sound Portillo</Link>
         <div className="flex gap-6">
           <Link to="/" className="hover:text-gray-300">Inicio</Link>
           <Link to="/reservas" className="flex items-center gap-2 hover:text-gray-300">

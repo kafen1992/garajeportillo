@@ -8,7 +8,7 @@ export const HomePage = () => {
         <div className="max-w-4xl mx-auto">
           <div className="mb-8">
             <img
-              src="/images/global-sound-logo.jpg"
+              src="/images/global-sound-logo.png"
               alt="Global Sound Equipment Rental"
               className="w-full max-w-2xl mx-auto h-auto rounded-lg shadow-lg"
             />
@@ -16,11 +16,10 @@ export const HomePage = () => {
           
           <div className="grid md:grid-cols-2 gap-8">
             <div className="space-y-4">
-              <h1 className="text-4xl font-bold">Garage Club Portillo</h1>
+              <h1 className="text-4xl font-bold">global sound Portillo</h1>
               <p className="text-gray-600">
-                Tu espacio para eventos y música en Portillo. Contamos con las mejores
-                instalaciones y equipo de sonido profesional para hacer de tu evento
-                algo inolvidable.
+                
+              En Global Sound, hacemos de tus eventos una experiencia inolvidable. Ofrecemos equipos de sonido de alta calidad y la opción de alquiler con o sin DJ profesional.
               </p>
             </div>
             
