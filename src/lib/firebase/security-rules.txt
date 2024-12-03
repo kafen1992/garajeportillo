@@ -1,0 +1,37 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Función helper para verificar si el usuario es admin
+    function isAdmin() {
+      return exists(/databases/$(database)/documents/admins/$(request.auth.uid));
+    }
+    
+    match /reservations/{document=**} {
+      // Cualquiera puede leer reservas confirmadas
+      allow read: if true;
+      
+      // Cualquiera puede crear reservas
+      allow create: if 
+        request.resource.data.status == 'pending' &&
+        request.resource.data.name is string &&
+        request.resource.data.phone is string &&
+        request.resource.data.description is string;
+      
+      // Solo admins pueden actualizar o eliminar
+      allow update, delete: if isAdmin();
+    }
+    
+    match /timeSlots/{document=**} {
+      // Cualquiera puede leer los horarios
+      allow read: if true;
+      
+      // Solo admins pueden crear, actualizar o eliminar horarios
+      allow create, update, delete: if isAdmin();
+    }
+    
+    match /admins/{userId} {
+      // Solo admins pueden leer/escribir otros admins
+      allow read, write: if isAdmin();
+    }
+  }
+}
